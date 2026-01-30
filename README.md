@@ -34,7 +34,7 @@ The backend follows a **microservices architecture** with an **API Gateway** and
 - Hibernate
 - MySQL
 - Maven
-- React (Frontend)
+
 - Git & GitHub
 
 ---
@@ -64,7 +64,7 @@ mvn spring-boot:run
 cd user_service
 mvn spring-boot:run
 
-Project structer
+Project structure
 hostelBackend/
 │
 ├── api-gateway/

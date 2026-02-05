@@ -1,5 +1,6 @@
 {
-    "java.project.sourcePaths": [
-        "hostel-service/src/main/java"
-    ]
+  "java.project.sourcePaths": [
+    "payment_service/src/main/java"
+  ],
+  "java.configuration.enableAnnotationProcessing": true
 }

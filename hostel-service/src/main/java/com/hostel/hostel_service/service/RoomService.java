@@ -22,6 +22,7 @@ public class RoomService {
         this.hostelRepository = hostelRepository;
     }
 
+    // Get all rooms
     public List<RoomDTO> getAllRooms() {
         return roomRepository.findAll()
                 .stream()
@@ -29,6 +30,7 @@ public class RoomService {
                 .collect(Collectors.toList());
     }
 
+    // Get rooms by hostel
     public List<RoomDTO> getRoomsByHostel(Long hostelId) {
         return roomRepository.findByHostelId(hostelId)
                 .stream()
@@ -36,12 +38,14 @@ public class RoomService {
                 .collect(Collectors.toList());
     }
 
+    // Get room by ID
     public RoomDTO getRoomById(Long id) {
         Room room = roomRepository.findById(id)
                 .orElseThrow(() -> new RoomNotFoundException(id));
         return mapToDTO(room);
     }
 
+    // Create room
     public RoomDTO createRoom(RoomDTO dto) {
         Hostel hostel = hostelRepository.findById(dto.getHostelId())
                 .orElseThrow(() -> new RuntimeException("Hostel not found"));
@@ -57,6 +61,7 @@ public class RoomService {
         return mapToDTO(saved);
     }
 
+    // Update room
     public RoomDTO updateRoom(Long id, RoomDTO dto) {
         Room room = roomRepository.findById(id)
                 .orElseThrow(() -> new RoomNotFoundException(id));
@@ -74,6 +79,7 @@ public class RoomService {
         return mapToDTO(updated);
     }
 
+    // Delete room
     public void deleteRoom(Long id) {
         if (!roomRepository.existsById(id)) {
             throw new RoomNotFoundException(id);
@@ -81,6 +87,7 @@ public class RoomService {
         roomRepository.deleteById(id);
     }
 
+    // Mapper
     private RoomDTO mapToDTO(Room room) {
         RoomDTO dto = new RoomDTO();
         dto.setId(room.getId());

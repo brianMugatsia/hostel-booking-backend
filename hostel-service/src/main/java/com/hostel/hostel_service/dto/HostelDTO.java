@@ -4,8 +4,6 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
-import org.springframework.web.multipart.MultipartFile;
-
 import java.util.List;
 
 public class HostelDTO {
@@ -25,7 +23,8 @@ public class HostelDTO {
     @Min(value = 1, message = "Hostel must have at least 1 room")
     private Integer totalRooms;
 
-    private List<MultipartFile> photos;
+    // store photo URLs
+    private List<String> photoUrls;
 
     // Getters & Setters
     public Long getId() {
@@ -68,11 +67,11 @@ public class HostelDTO {
         this.totalRooms = totalRooms;
     }
 
-    public List<MultipartFile> getPhotos() {
-        return photos;
+    public List<String> getPhotoUrls() {
+        return photoUrls;
     }
 
-    public void setPhotos(List<MultipartFile> photos) {
-        this.photos = photos;
+    public void setPhotoUrls(List<String> photoUrls) {
+        this.photoUrls = photoUrls;
     }
 }

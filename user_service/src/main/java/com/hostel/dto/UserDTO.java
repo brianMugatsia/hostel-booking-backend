@@ -1,31 +1,29 @@
-package com.hostel.entity;
+package com.hostel.dto;
 
-import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
-@Entity
-@Table(name = "users")
-public class User {
+public class UserDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+    @NotBlank(message = "Name is required")
     private String name;
 
-    @Column(unique = true, nullable = false)
+    @Email(message = "Invalid email format")
+    @NotBlank(message = "Email is required")
     private String email;
 
+    @Size(min = 6, message = "Password must be at least 6 characters")
+    @NotBlank(message = "Password is required")
     private String password;
 
-    @Enumerated(EnumType.STRING)
-    private Role role;
+    @NotBlank(message = "Role is required")
+    private String role;
 
-    // Constructor
-    public User() {
+    public UserDTO() {
     }
 
-    public User(Long id, String name, String email, String password, Role role) {
-        this.id = id;
+    public UserDTO(String name, String email, String password, String role) {
         this.name = name;
         this.email = email;
         this.password = password;
@@ -33,15 +31,6 @@ public class User {
     }
 
     // Getters and Setters
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
     }
@@ -66,11 +55,11 @@ public class User {
         this.password = password;
     }
 
-    public Role getRole() {
+    public String getRole() {
         return role;
     }
 
-    public void setRole(Role role) {
+    public void setRole(String role) {
         this.role = role;
     }
 }

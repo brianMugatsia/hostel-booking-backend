@@ -9,6 +9,9 @@ public class UserDTO {
     @NotBlank(message = "Name is required")
     private String name;
 
+    @NotBlank(message = "Other names are required")
+    private String otherNames;
+
     @Email(message = "Invalid email format")
     @NotBlank(message = "Email is required")
     private String email;
@@ -20,23 +23,30 @@ public class UserDTO {
     @NotBlank(message = "Role is required")
     private String role;
 
+    @NotBlank(message = "Phone is required")
+    private String phone;
+
+    private String hostelName; // optional for STUDENT
+    private String hostelNumber; // optional for STUDENT
+
     public UserDTO() {
     }
 
-    public UserDTO(String name, String email, String password, String role) {
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.role = role;
-    }
-
-    // Getters and Setters
+    // Getters & Setters for all fields
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getOtherNames() {
+        return otherNames;
+    }
+
+    public void setOtherNames(String otherNames) {
+        this.otherNames = otherNames;
     }
 
     public String getEmail() {
@@ -61,5 +71,29 @@ public class UserDTO {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getHostelName() {
+        return hostelName;
+    }
+
+    public void setHostelName(String hostelName) {
+        this.hostelName = hostelName;
+    }
+
+    public String getHostelNumber() {
+        return hostelNumber;
+    }
+
+    public void setHostelNumber(String hostelNumber) {
+        this.hostelNumber = hostelNumber;
     }
 }

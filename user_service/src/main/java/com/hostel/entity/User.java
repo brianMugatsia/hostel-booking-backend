@@ -1,6 +1,9 @@
 package com.hostel.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "users")
@@ -10,30 +13,38 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Name is required")
+    @Column(nullable = false)
     private String name;
 
+    private String otherNames;
+
+    @Email(message = "Invalid email format")
+    @NotBlank(message = "Email is required")
     @Column(unique = true, nullable = false)
     private String email;
 
+    @NotBlank(message = "Password is required")
+    @Size(min = 6, message = "Password must be at least 6 characters")
+    @Column(nullable = false)
     private String password;
 
+    @NotBlank(message = "Phone is required")
+    @Column(nullable = false)
+    private String phone;
+
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private Role role;
 
-    // Constructor
+    // Optional fields for hostel owners
+    private String hostelName;
+    private String hostelNumber;
+
     public User() {
     }
 
-    public User(Long id, String name, String email, String password, Role role) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.role = role;
-    }
-
     // Getters and Setters
-
     public Long getId() {
         return id;
     }
@@ -48,6 +59,14 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getOtherNames() {
+        return otherNames;
+    }
+
+    public void setOtherNames(String otherNames) {
+        this.otherNames = otherNames;
     }
 
     public String getEmail() {
@@ -66,11 +85,49 @@ public class User {
         this.password = password;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
     public Role getRole() {
         return role;
     }
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public String getHostelName() {
+        return hostelName;
+    }
+
+    public void setHostelName(String hostelName) {
+        this.hostelName = hostelName;
+    }
+
+    public String getHostelNumber() {
+        return hostelNumber;
+    }
+
+    public void setHostelNumber(String hostelNumber) {
+        this.hostelNumber = hostelNumber;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", otherNames='" + otherNames + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", role=" + role +
+                ", hostelName='" + hostelName + '\'' +
+                ", hostelNumber='" + hostelNumber + '\'' +
+                '}';
     }
 }

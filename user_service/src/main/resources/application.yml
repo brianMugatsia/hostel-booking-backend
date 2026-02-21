@@ -4,21 +4,27 @@ server:
 spring:
   application:
     name: USER-SERVICE
+
   datasource:
-    url: ${DB_URL}
-    username: ${DB_USER}
-    password: ${DB_PASS}
+    url: jdbc:mysql://localhost:3306/hostel_users?useSSL=false&serverTimezone=UTC
+    username: root
+    password: 258036bm,
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
   jpa:
     hibernate:
-      ddl-auto: none   # disable auto schema updates, use Flyway instead
+      ddl-auto: update   # Now JPA can manage schema if needed
     show-sql: true
     database-platform: org.hibernate.dialect.MySQL8Dialect
-  flyway:
-    enabled: true
-    locations: classpath:db/migration
+
+  # Flyway removed completely
+  # flyway:
+  #   enabled: true
+  #   locations: classpath:db/migration
 
 jwt:
-  secret: ${JWT_SECRET}
+  
+  secret: mySuperSuperSecretKeyThatIsLongEnough1234
 
 eureka:
   client:
